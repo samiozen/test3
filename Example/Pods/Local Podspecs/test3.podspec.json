@@ -1,0 +1,22 @@
+{
+  "name": "test3",
+  "version": "0.1.0",
+  "summary": "A short description of test3.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/sami/test3",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "sami": "ozen.sami@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/sami/test3.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "test3/Classes/**/*"
+}
