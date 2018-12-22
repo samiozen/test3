@@ -10,7 +10,7 @@ import UIKit
 
 public typealias KeyboardCompletion = (Bool, CGFloat) -> Void
 
-private class KeyboardObject {
+public class KeyboardObject {
     
     let completion: KeyboardCompletion
     
@@ -29,9 +29,9 @@ public final class CactusKeyboard {
     
     static let `default` = CactusKeyboard()
     
-    private var observers: NSMapTable<NSString, KeyboardObject> = NSMapTable(keyOptions: NSPointerFunctions.Options.strongMemory, valueOptions: NSPointerFunctions.Options.strongMemory)
+    public var observers: NSMapTable<NSString, KeyboardObject> = NSMapTable(keyOptions: NSPointerFunctions.Options.strongMemory, valueOptions: NSPointerFunctions.Options.strongMemory)
     
-    private init() {
+    public init() {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         center.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -42,14 +42,14 @@ public final class CactusKeyboard {
     }
     
     // MARK: - Notifications
-    @objc private func keyboardWillShow(_ notification: Notification) {
+    @objc public func keyboardWillShow(_ notification: Notification) {
         var userInfo = notification.userInfo!
         let keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         postCompletions(with: true, height: keyboardFrame.height)
     }
     
-    @objc private func keyboardWillHide(_ notification: Notification) {
+    @objc public func keyboardWillHide(_ notification: Notification) {
         postCompletions(with: false, height: 0)
     }
     
@@ -89,5 +89,5 @@ public extension UIViewController {
     func removeKeyboardObserver() {
         CactusKeyboard.default.removeKeyboardObserver(for: self)
     }
-    
+ 
 }
